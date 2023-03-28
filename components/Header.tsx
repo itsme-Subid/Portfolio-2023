@@ -1,4 +1,20 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const blink = keyframes`
+  0%,
+  100% {
+    scale: 0;
+  }
+  49% {
+    scale: 0;
+  }
+  50% {
+    scale: 1;
+  }
+  99% {
+    scale: 1;
+  }
+`;
 
 const HeaderStyle = styled.header`
   position: fixed;
@@ -30,11 +46,8 @@ const HeaderStyle = styled.header`
           width: 1rem;
           height: 0.15rem;
           border-radius: 0.25rem;
-          background-color: rgb(var(--light-color));
-          transition: 0.15s;
-        }
-        &:hover::before {
-          transform: rotate(360deg);
+          background-color: rgb(var(--dark-color));
+          animation: ${blink} 1s infinite;
         }
       }
       & ul {
@@ -45,7 +58,7 @@ const HeaderStyle = styled.header`
           position: relative;
           list-style: none;
           font-weight: 500;
-          color: rgb(var(--light-color));
+          color: rgb(var(--dark-color));
           cursor: pointer;
           transition: 0.15s;
           &::before {
@@ -86,7 +99,7 @@ const HeaderStyle = styled.header`
     & .icons {
       display: flex;
       align-items: center;
-      & span {
+      & div[role="button"] {
         position: relative;
         font-weight: 500;
         color: rgb(var(--light-color));
@@ -96,10 +109,11 @@ const HeaderStyle = styled.header`
         border: 1px solid rgb(var(--light-color), 0.1);
         cursor: pointer;
         overflow: hidden;
+        box-shadow: 0 0.15rem 0.5rem rgb(var(--primary-color), 0.25),
+          0 0.25rem 1rem rgb(var(--primary-color), 0.1);
         transition: 0.5s;
         &:hover {
-          box-shadow: 0 0 0.75rem rgb(var(--primary-color), 0.5),
-            0 0 1rem rgb(var(--primary-color), 0.25);
+          box-shadow: 0 0 0.75rem rgb(var(--primary-color), 0.25);
         }
         &::before {
           content: "";
@@ -134,7 +148,9 @@ const Header = () => {
           </ul>
         </div>
         <div className="icons">
-          <span>Hire Now</span>
+          <div role="button">
+            <div className="btn-text">Hire Now</div>
+          </div>
         </div>
       </div>
     </HeaderStyle>

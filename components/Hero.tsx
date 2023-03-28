@@ -16,10 +16,10 @@ const Section = styled.section`
     justify-content: center;
     & h2 {
       font-weight: 600;
-      color: rgb(var(--light-color));
+      color: rgb(var(--dark-color));
       & span {
         font-size: 1.5rem;
-        color: rgb(var(--light-color));
+        color: rgb(var(--dark-color));
       }
       & strong {
         font-size: 3rem;
@@ -31,24 +31,36 @@ const Section = styled.section`
     & p {
       font-size: 1rem;
       font-weight: 500;
-      color: rgb(var(--light-color), 0.8);
+      color: rgb(var(--dark-color), 0.8);
       margin-bottom: 1rem;
     }
     & button {
       font-size: 1rem;
       font-weight: 500;
       color: rgb(var(--light-color));
-      padding: 0.5rem 1.25rem;
-      border-radius: 0.25rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 5rem;
       background-color: rgb(var(--secondary-color));
       border: 1px solid rgb(var(--light-color), 0.1);
+      box-shadow: 0 0.25rem 0.5rem rgb(var(--secondary-color), 0.25),
+        0 0.35rem 1rem rgb(var(--secondary-color), 0.1);
       width: fit-content;
       cursor: pointer;
       overflow: hidden;
       transition: 0.5s;
+      animation: animate-size 0.75s infinite ease alternate;
+      @keyframes animate-size {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.05);
+        }
+      }
       &:hover {
         border-color: transparent;
         box-shadow: 0 0 0.75rem rgb(var(--secondary-color), 0.75);
+        animation-play-state: paused;
       }
     }
   }
@@ -63,7 +75,7 @@ const Section = styled.section`
       inset: 0;
       margin: auto;
       border-radius: 50%;
-      border: 1px solid rgb(var(--light-color), 0.1);
+      border: 1px solid rgb(var(--dark-color), 0.1);
       object-fit: contain;
       animation: animate 4s infinite ease alternate;
       @keyframes animate {

@@ -10,12 +10,8 @@ const Container = styled.div`
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
-  color: rgb(var(--light-color));
-  background-image: url(${bg.src});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-`
+  color: rgb(var(--dark-color));
+`;
 
 export default function Home() {
   return (
@@ -25,5 +21,5 @@ export default function Home() {
       <Work />
       <Contact />
     </Container>
-  )
+  );
 }

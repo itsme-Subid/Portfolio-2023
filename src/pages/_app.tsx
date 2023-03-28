@@ -12,9 +12,10 @@ const Header = lazy(() => import("../../components/Header"));
 const GlobalStyle = createGlobalStyle`
   :root{
     --light-color: 255, 255, 255;
-    --dark-color: 49, 49, 49;
-    --primary-color: 125, 64, 248;
-    --secondary-color: 255, 106, 139;
+    --dark-color: 2, 2, 2;
+    --primary-color: 253, 139, 0;
+    --secondary-color: 0, 134, 255;
+    --tertiary-color: 0, 98, 106;
     scroll-behavior: smooth;
   }
   ::-webkit-scrollbar {
