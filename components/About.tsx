@@ -1,4 +1,6 @@
+import { MouseEvent, useState } from "react";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Section = styled.section`
   min-height: 100vh;
@@ -9,6 +11,27 @@ const Section = styled.section`
   align-items: center;
   flex-direction: column;
   gap: 2rem;
+  transition: 0.15s;
+  & nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    & button {
+      position: relative;
+      &.active::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 -0.1rem 0;
+        margin-inline: auto;
+        width: 80%;
+        height: 0.15rem;
+        border-radius: 1rem;
+        background-color: rgb(var(--primary-color));
+        transition: 0.15s;
+      }
+    }
+  }
   & :where(.experience, .education) {
     display: flex;
     justify-content: center;
@@ -23,39 +46,57 @@ const Section = styled.section`
       color: rgb(var(--dark-color), 0.8);
     }
     & .timeline {
-      position: relative;
-      margin-left: auto;
       display: flex;
       justify-content: center;
       flex-direction: column;
       gap: 1rem;
-      width: 95%;
-      &::before {
-        content: "";
-        position: absolute;
-        height: calc(100% - 0.75rem);
-        top: 0.5rem;
-        width: 1px;
-        background-color: rgb(var(--dark-color), 0.2);
-        left: -2.5%;
-        transform: translateX(-50%);
-      }
       & .timeline__item {
         position: relative;
         display: flex;
         justify-content: center;
         flex-direction: column;
         gap: 0.5rem;
-        &::before {
-          content: "";
-          position: absolute;
-          height: 0.75rem;
-          width: 0.75rem;
-          border-radius: 50%;
-          top: 0.5rem;
-          background-color: rgb(var(--tertiary-color));
-          left: -2.5%;
-          transform: translateX(-50%);
+        & .group {
+          margin-left: auto;
+          width: 95%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 1rem;
+          & .group__item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5rem;
+            &::before {
+              content: "";
+              position: absolute;
+              height: calc(100% + 1rem);
+              top: 0.5rem;
+              width: 1px;
+              background-color: rgb(var(--dark-color), 0.2);
+              left: -2.5%;
+              transform: translateX(-50%);
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              height: 0.75rem;
+              width: 0.75rem;
+              border-radius: 50% 0 50% 50%;
+              rotate: 45deg;
+              transform: rotate(45deg);
+              transform-origin: left;
+              top: 0.4rem;
+              background-color: rgb(var(--tertiary-color));
+              left: -2.5%;
+              transform: translateX(-50%);
+            }
+          }
+          & .group__item:last-child::before {
+            display: none;
+          }
         }
         & :where(.designation, .course) {
           display: flex;
@@ -63,10 +104,8 @@ const Section = styled.section`
           align-items: center;
           gap: 1rem;
           color: rgb(var(--dark-color), 0.75);
-          & h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            text-align: left;
+          & h4 {
+            letter-spacing: 0.5px;
           }
           & span {
             font-size: 1rem;
@@ -74,12 +113,31 @@ const Section = styled.section`
             text-align: left;
           }
         }
-        & p.limit-line-1 {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        & p {
+          color: rgb(var(--dark-color), 0.75);
+          font-weight: 200;
+          &.limit-line-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        & button {
+          order: 1;
+          font-weight: 700;
+          letter-spacing: 1px;
+          color: rgb(var(--dark-color), 0.75);
+          border: 1px solid rgb(var(--dark-color), 0.1);
+          padding: 0.5rem 1rem;
+          border-radius: 5rem;
+          margin-right: auto;
+          transition: 0.15s;
+          &:hover {
+            border: 1px solid transparent;
+            background-color: rgb(var(--dark-color), 0.1);
+          }
         }
         & .skills {
           display: flex;
@@ -94,12 +152,12 @@ const Section = styled.section`
             text-align: center;
             border-radius: 5rem;
             color: rgb(var(--dark-color), 0.8);
-            border: 1px solid rgb(var(--secondary-color));
+            border: 1px solid rgb(var(--primary-color));
             transition: 0.15s;
             letter-spacing: 1px;
             cursor: pointer;
             &:hover {
-              background-color: rgb(var(--secondary-color));
+              background-color: rgb(var(--primary-color));
               color: rgb(var(--light-color));
             }
           }
@@ -108,6 +166,12 @@ const Section = styled.section`
     }
   }
 `;
+
+const container = {
+  hidden: { opacity: 0, x: "-100vw" },
+  show: { opacity: 1, x: 0 },
+  exit: { x: "100vw" },
+};
 
 const About = () => {
   const skills = [
@@ -121,85 +185,172 @@ const About = () => {
     "Git",
     "GitHub",
   ];
-
+  const [active, setActive] = useState("experience");
+  const hide = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => (
+    e.currentTarget.previousElementSibling?.classList.toggle("limit-line-1"),
+    e.currentTarget.previousElementSibling?.classList.contains("limit-line-1")
+      ? (e.currentTarget.innerText = "Show more")
+      : (e.currentTarget.innerText = "Show less")
+  );
   return (
-    <Section className="container">
-      <div className="experience">
-        <h2>Experience</h2>
-        <div className="timeline">
-          <div className="timeline__item">
-            <div className="designation">
-              <h3>Tech Lead</h3>
-              <span>(02/2023-Present)</span>
+    <Section className="container" id="about">
+      <nav>
+        <button
+          onClick={() => setActive("experience")}
+          className={`${active === "experience" && "active"}`}
+        >
+          <h2>Experience</h2>
+        </button>
+        <button
+          onClick={() => setActive("education")}
+          className={`${active === "education" && "active"}`}
+        >
+          <h2>Education</h2>
+        </button>
+      </nav>
+      {active === "experience" ? (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="experience"
+          >
+            <div className="timeline">
+              <div className="timeline__item">
+                <h3 className="companpy">Simmi Foundation</h3>
+                <div className="group">
+                  <div className="group__item">
+                    <div className="designation">
+                      <h4>Head of Engineering</h4>
+                      <span>(04/2023 - Present)</span>
+                    </div>
+                    <p className="limit-line-1">
+                      As a Frontend Team Leader Intern and Full Stack Developer
+                      Intern, I am leading the frontend team and working with
+                      tech stacks like React.js, Material UI, and Node.js. My
+                      responsibilities include mentoring team members, managing
+                      tasks, and ensuring the timely delivery of projects. I am
+                      also involved in the development of full-stack
+                      applications using the MERN stack.
+                    </p>
+                    <button onClick={(e) => hide(e)}>Show more</button>
+                    <div className="skills">
+                      {skills.map((skill, index) => (
+                        <span key={index}>{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="group__item">
+                    <div className="designation">
+                      <h4>Tech Lead</h4>
+                      <span>(02/2023 - 03/2023)</span>
+                    </div>
+                    <p className="limit-line-1">
+                      As a Frontend Team Leader Intern and Full Stack Developer
+                      Intern, I am leading the frontend team and working with
+                      tech stacks like React.js, Material UI, and Node.js. My
+                      responsibilities include mentoring team members, managing
+                      tasks, and ensuring the timely delivery of projects. I am
+                      also involved in the development of full-stack
+                      applications using the MERN stack.
+                    </p>
+                    <button onClick={(e) => hide(e)}>Show more</button>
+                    <div className="skills">
+                      {skills.map((skill, index) => (
+                        <span key={index}>{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="group__item">
+                    <div className="designation">
+                      <h4>Full Stack Developer</h4>
+                      <span>(01/2023 - 02/2023)</span>
+                    </div>
+                    <p className="limit-line-1">
+                      As a Frontend Team Leader Intern and Full Stack Developer
+                      Intern, I am leading the frontend team and working with
+                      tech stacks like React.js, Material UI, and Node.js. My
+                      responsibilities include mentoring team members, managing
+                      tasks, and ensuring the timely delivery of projects. I am
+                      also involved in the development of full-stack
+                      applications using the MERN stack.
+                    </p>
+                    <button onClick={(e) => hide(e)}>Show more</button>
+                    <div className="skills">
+                      {skills.map((skill, index) => (
+                        <span key={index}>{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="limit-line-1">
-              As a Frontend Team Leader Intern and Full Stack Developer Intern,
-              I am leading the frontend team and working with tech stacks like
-              React.js, Material UI, and Node.js. My responsibilities include
-              mentoring team members, managing tasks, and ensuring the timely
-              delivery of projects. I am also involved in the development of
-              full-stack applications using the MERN stack.
-            </p>
-            <div className="skills">
-              {skills.map((skill, index) => (
-                <span key={index}>{skill}</span>
-              ))}
+          </motion.div>
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="education"
+          >
+            <div className="timeline">
+              <div className="timeline__item">
+                <h3 className="organisation">
+                  Sheoraphuli Surendranath Vidyaniketan
+                </h3>
+                <div className="group">
+                  <div className="group__item">
+                    <div className="course">
+                      <h4>Higher Secondary</h4>
+                      <span>(09/2021 - Present)</span>
+                    </div>
+                    <p className="limit-line-1">
+                      As a Frontend Team Leader Intern and Full Stack Developer
+                      Intern, I am leading the frontend team and working with
+                      tech stacks like React.js, Material UI, and Node.js. My
+                      responsibilities include mentoring team members, managing
+                      tasks, and ensuring the timely delivery of projects. I am
+                      also involved in the development of full-stack
+                      applications using the MERN stack.
+                    </p>
+                    <button onClick={(e) => hide(e)}>Show more</button>
+                  </div>
+                </div>
+              </div>
+              <div className="timeline__item">
+                <h3 className="organisation">
+                  Chandannagar Kanailal Vidyamandir
+                </h3>
+                <div className="group">
+                  <div className="group__item">
+                    <div className="course">
+                      <h4>Secondary</h4>
+                      <span>(04/2018 - 06/2021)</span>
+                    </div>
+                    <p className="limit-line-1">
+                      As a Frontend Team Leader Intern and Full Stack Developer
+                      Intern, I am leading the frontend team and working with
+                      tech stacks like React.js, Material UI, and Node.js. My
+                      responsibilities include mentoring team members, managing
+                      tasks, and ensuring the timely delivery of projects. I am
+                      also involved in the development of full-stack
+                      applications using the MERN stack.
+                    </p>
+                    <button onClick={(e) => hide(e)}>Show more</button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="timeline__item">
-            <div className="designation">
-              <h3>Full Stack Developer</h3>
-              <span>(01/2023-Present)</span>
-            </div>
-            <p>
-              As a Frontend Team Leader Intern and Full Stack Developer Intern,
-              I am leading the frontend team and working with tech stacks like
-              React.js, Material UI, and Node.js. My responsibilities include
-              mentoring team members, managing tasks, and ensuring the timely
-              delivery of projects. I am also involved in the development of
-              full-stack applications using the MERN stack.
-            </p>
-            <div className="skills">
-              {skills.map((skill, index) => (
-                <span key={index}>{skill}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="education">
-        <h2>Education</h2>
-        <div className="timeline">
-          <div className="timeline__item">
-            <div className="course">
-              <h3>Frontend Team Leader</h3>
-              <span>(02/2023-Present)</span>
-            </div>
-            <p>
-              As a Frontend Team Leader Intern and Full Stack Developer Intern,
-              I am leading the frontend team and working with tech stacks like
-              React.js, Material UI, and Node.js. My responsibilities include
-              mentoring team members, managing tasks, and ensuring the timely
-              delivery of projects. I am also involved in the development of
-              full-stack applications using the MERN stack.
-            </p>
-          </div>
-          <div className="timeline__item">
-            <div className="course">
-              <h3>Full Stack Developer</h3>
-              <span>(01/2023-Present)</span>
-            </div>
-            <p>
-              As a Frontend Team Leader Intern and Full Stack Developer Intern,
-              I am leading the frontend team and working with tech stacks like
-              React.js, Material UI, and Node.js. My responsibilities include
-              mentoring team members, managing tasks, and ensuring the timely
-              delivery of projects. I am also involved in the development of
-              full-stack applications using the MERN stack.
-            </p>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </AnimatePresence>
+      )}
     </Section>
   );
 };

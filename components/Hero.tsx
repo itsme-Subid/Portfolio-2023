@@ -92,7 +92,7 @@ const Section = styled.section`
 
 const Hero = () => {
   return (
-    <Section className="container">
+    <Section className="container" id="home">
       <div className="left">
         <h2>
           <span>Hello World, I&apos;m </span>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 
 const blink = keyframes`
@@ -141,10 +142,21 @@ const Header = () => {
         <div className="links">
           <h1>SUBID DAS</h1>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Skill</li>
-            <li>Contact</li>
+            <li>
+              <Link href="#home">Home</Link>
+            </li>
+            <li>
+              <Link href="#about">About</Link>
+            </li>
+            <li>
+              <Link href="#work">Work</Link>
+            </li>
+            <li>
+              <Link href="#skill">Skill</Link>
+            </li>
+            <li>
+              <Link href="#contact">Contact</Link>
+            </li>
           </ul>
         </div>
         <div className="icons">
