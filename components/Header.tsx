@@ -99,7 +99,7 @@ const HeaderStyle = styled.header`
     & .icons {
       display: flex;
       align-items: center;
-      & div[role="button"] {
+      & button {
         position: relative;
         font-weight: 500;
         color: rgb(var(--light-color));
@@ -148,9 +148,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="icons">
-          <div role="button">
-            <div className="btn-text">Hire Now</div>
-          </div>
+          <button>Hire Now</button>
         </div>
       </div>
     </HeaderStyle>

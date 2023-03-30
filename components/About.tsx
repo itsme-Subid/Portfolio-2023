@@ -129,7 +129,7 @@ const About = () => {
         <div className="timeline">
           <div className="timeline__item">
             <div className="designation">
-              <h3>Frontend Team Leader</h3>
+              <h3>Tech Lead</h3>
               <span>(02/2023-Present)</span>
             </div>
             <p className="limit-line-1">

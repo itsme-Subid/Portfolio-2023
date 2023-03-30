@@ -3,7 +3,6 @@ import { Poppins } from "next/font/google";
 import { createGlobalStyle } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import { Page } from "../../page";
 import { lazy } from "react";
 import Head from "next/head";
 
@@ -62,18 +61,14 @@ const container = {
   show: { opacity: 1, x: 0 },
 };
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps & {
-  Component: Page;
-}) {
+export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
     <>
       <Head>
         <title>Portfolio</title>
       </Head>
+      <GlobalStyle />
       <AnimatePresence mode="wait">
         <motion.div
           key={router.route}
@@ -82,8 +77,7 @@ export default function App({
           animate="show"
           className={poppins.variable}
         >
-          <GlobalStyle />
-          {!Component.getLayout && <Header />}
+          <Header />
           <Component {...pageProps} />
         </motion.div>
       </AnimatePresence>
