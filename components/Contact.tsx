@@ -15,7 +15,7 @@ const Section = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     & h2 {
       font-size: 2rem;
       font-weight: 600;
@@ -37,6 +37,11 @@ const Section = styled.div`
         font-size: 1rem;
         width: 100%;
         transition: 0.15s;
+        &::placeholder {
+          color: rgb(var(--dark-color), 0.5);
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
       }
       & textarea {
         height: 10rem;

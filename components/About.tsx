@@ -125,6 +125,9 @@ const Section = styled.section`
           }
         }
         & button {
+          position: absolute;
+          top: -0.5rem;
+          right: 0;
           order: 1;
           font-weight: 700;
           letter-spacing: 1px;

@@ -22,6 +22,8 @@ const HeaderStyle = styled.header`
   inset: 0 0 auto 0;
   display: flex;
   justify-content: center;
+  backdrop-filter: blur(0.25rem);
+  z-index: 10;
   & .navbar {
     display: flex;
     justify-content: space-between;
@@ -58,8 +60,10 @@ const HeaderStyle = styled.header`
         & li {
           position: relative;
           list-style: none;
-          font-weight: 500;
-          color: rgb(var(--dark-color));
+          font-weight: 600;
+          font-size: small;
+          text-transform: uppercase;
+          color: rgb(var(--dark-color), 0.75);
           cursor: pointer;
           transition: 0.15s;
           &::before {
