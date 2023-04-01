@@ -1,6 +1,8 @@
-import Image from "next/image";
+// import Image from "next/image";
 import styled from "styled-components";
-import profile from "../public/profile.jpg";
+// import profile from "../public/profile.jpg";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, MeshDistortMaterial, Sphere } from "@react-three/drei";
 
 const Section = styled.section`
   height: 100vh;
@@ -9,11 +11,20 @@ const Section = styled.section`
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  @media screen and (max-width: 50rem) {
+    flex-direction: column;
+    height: 200vh;
+    width: 100% !important;
+  }
   & .left {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media screen and (max-width: 50rem) {
+      height: 100vh;
+      padding: 0 1rem;
+    }
     & h2 {
       font-weight: 600;
       color: rgb(var(--dark-color));
@@ -65,11 +76,17 @@ const Section = styled.section`
     }
   }
   & .right {
-    flex: 1;
+    flex: 1.5;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    @media screen and (max-width: 50rem) {
+      flex: 1;
+      height: 100vh;
+    }
     & img {
       position: absolute;
       inset: 0;
@@ -106,7 +123,21 @@ const Hero = () => {
         <button>Download CV</button>
       </div>
       <div className="right">
-        <Image src={profile} width={500} height={500} alt="" />
+        <Canvas>
+          <ambientLight intensity={1} />
+          <directionalLight position={[3, 5, 5]} />
+          <directionalLight position={[-10, -12, -12]} />
+          <OrbitControls enableZoom={false} autoRotate />
+          <Sphere args={[1, 100, 200]} scale={2}>
+            <MeshDistortMaterial
+              attach="material"
+              distort={0.5}
+              speed={2}
+              color="#0086ff"
+            />
+          </Sphere>
+        </Canvas>
+        {/* <Image src={profile} width={500} height={500} alt="" /> */}
       </div>
     </Section>
   );

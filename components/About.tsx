@@ -12,6 +12,9 @@ const Section = styled.section`
   flex-direction: column;
   gap: 2rem;
   transition: 0.15s;
+  @media screen and (max-width: 50rem) {
+    min-height: 200vh;
+  }
   & nav {
     display: flex;
     justify-content: center;
@@ -63,6 +66,9 @@ const Section = styled.section`
           flex-direction: column;
           justify-content: center;
           gap: 1rem;
+          @media screen and (max-width: 50rem) {
+            width: 90%;
+          }
           & .group__item {
             position: relative;
             display: flex;
@@ -78,6 +84,9 @@ const Section = styled.section`
               background-color: rgb(var(--dark-color), 0.2);
               left: -2.5%;
               transform: translateX(-50%);
+              @media screen and (max-width: 50rem) {
+                left: -5%;
+              }
             }
             &::after {
               content: "";
@@ -92,6 +101,9 @@ const Section = styled.section`
               background-color: rgb(var(--tertiary-color));
               left: -2.5%;
               transform: translateX(-50%);
+              @media screen and (max-width: 50rem) {
+                left: -5%;
+              }
             }
           }
           & .group__item:last-child::before {
@@ -104,6 +116,12 @@ const Section = styled.section`
           align-items: center;
           gap: 1rem;
           color: rgb(var(--dark-color), 0.75);
+          @media screen and (max-width: 50rem) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
           & h4 {
             letter-spacing: 0.5px;
           }
@@ -137,6 +155,9 @@ const Section = styled.section`
           border-radius: 5rem;
           margin-right: auto;
           transition: 0.15s;
+          @media screen and (max-width: 50rem) {
+            top: -0.25rem;
+          }
           &:hover {
             border: 1px solid transparent;
             background-color: rgb(var(--dark-color), 0.1);

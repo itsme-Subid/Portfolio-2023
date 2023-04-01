@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import Map from "./Map";
 
 const Section = styled.div`
+  position: relative;
   min-height: 100vh;
   padding: 4rem 0;
   scroll-snap-align: center;
@@ -9,6 +11,10 @@ const Section = styled.div`
   align-items: center;
   gap: 2rem;
   transition: 0.15s;
+  @media screen and (max-width: 50rem) {
+    min-height: 200vh;
+    flex-direction: column;
+  }
   & .form-container {
     flex: 1;
     display: flex;
@@ -16,6 +22,10 @@ const Section = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 1rem;
+    @media screen and (max-width: 50rem) {
+      min-height: 100vh;
+      width: 100%;
+    }
     & h2 {
       font-size: 2rem;
       font-weight: 600;
@@ -66,6 +76,19 @@ const Section = styled.div`
   }
   & .map {
     flex: 1;
+    height: 100%;
+    z-index: -1;
+    @media screen and (max-width: 50rem) {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > svg {
+        top: 50% !important;
+        right: 50% !important;
+        transform: translate(40%, -45%) scale(1.5) !important;
+      }
+    }
   }
 `;
 
@@ -81,7 +104,9 @@ const Contact = () => {
           <button type="submit">Send</button>
         </form>
       </div>
-      <div className="map"></div>
+      <div className="map">
+        <Map />
+      </div>
     </Section>
   );
 };

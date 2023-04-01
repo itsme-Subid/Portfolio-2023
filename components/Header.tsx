@@ -57,6 +57,9 @@ const HeaderStyle = styled.header`
         display: flex;
         justify-content: center;
         gap: 1rem;
+        @media screen and (max-width: 50rem) {
+          display: none;
+        }
         & li {
           position: relative;
           list-style: none;
