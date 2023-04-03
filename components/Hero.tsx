@@ -227,6 +227,7 @@ const Hero = () => {
             isMesh={undefined}
             updateMorphTargets={undefined}
             getVertexPosition={undefined}
+            visible={undefined}
           >
             <MeshDistortMaterial
               attach="material"
