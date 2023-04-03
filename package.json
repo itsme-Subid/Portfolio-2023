@@ -23,7 +23,7 @@
     "react-simple-maps": "^3.0.0",
     "styled-components": "^5.3.9",
     "three": "^0.151.2",
-    "typescript": "5.0.2"
+    "typescript": "5.0.3"
   },
   "devDependencies": {
     "@types/react-simple-maps": "^3.0.0",
