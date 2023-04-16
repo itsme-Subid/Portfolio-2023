@@ -24,7 +24,7 @@ const Map = () => {
     >
       <Geographies
         geography="/features.json"
-        fill="rgb(var(--secondary-color), 0.75)"
+        fill="rgb(var(--primary-color), 0.75)"
         stroke="#FFFFFF"
         strokeWidth={0.5}
       >
@@ -39,7 +39,7 @@ const Map = () => {
         dx={90}
         dy={90}
         connectorProps={{
-          stroke: "rgb(var(--tertiary-color))",
+          stroke: "rgb(var(--light-color))",
           strokeWidth: 2,
           strokeLinecap: "round",
         }}
@@ -49,7 +49,7 @@ const Map = () => {
           y="15"
           textAnchor="end"
           alignmentBaseline="middle"
-          fill="rgb(var(--tertiary-color))"
+          fill="rgb(var(--light-color))"
         >
           {"I'm in Kolkata"}
         </text>

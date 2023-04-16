@@ -2,17 +2,11 @@ import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 
 const blink = keyframes`
-  0%,
+  0%, 49%,
   100% {
     transform: scale(0);
   }
-  49% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1);
-  }
-  99% {
+  50%, 99% {
     transform: scale(1);
   }
 `;
@@ -30,6 +24,7 @@ const HeaderStyle = styled.header`
     align-items: center;
     padding: 1rem 0;
     & .links {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,6 +36,9 @@ const HeaderStyle = styled.header`
         color: rgb(var(--secondary-color));
         margin-right: 1rem;
         cursor: pointer;
+        @media screen and (max-width: 50rem) {
+          margin-right: auto;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -49,11 +47,12 @@ const HeaderStyle = styled.header`
           width: 1rem;
           height: 0.15rem;
           border-radius: 0.25rem;
-          background-color: rgb(var(--dark-color));
+          background-color: rgb(var(--light-color));
           animation: ${blink} 1s infinite;
         }
       }
       & ul {
+        flex: 1;
         display: flex;
         justify-content: center;
         gap: 1rem;
@@ -66,7 +65,7 @@ const HeaderStyle = styled.header`
           font-weight: 600;
           font-size: small;
           text-transform: uppercase;
-          color: rgb(var(--dark-color), 0.75);
+          color: rgb(var(--light-color), 0.75);
           cursor: pointer;
           transition: 0.15s;
           &::before {
@@ -107,12 +106,15 @@ const HeaderStyle = styled.header`
     & .icons {
       display: flex;
       align-items: center;
-      & button {
+      & a {
         position: relative;
-        font-weight: 500;
-        color: rgb(var(--light-color));
-        padding: 0.5rem 1rem;
-        border-radius: 0.25rem;
+        font-weight: 600;
+        font-size: small;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: rgb(var(--dark-color));
+        padding: 0.75rem 1.5rem;
+        border-radius: 5rem;
         background-color: rgb(var(--primary-color));
         border: 1px solid rgb(var(--light-color), 0.1);
         cursor: pointer;
@@ -130,7 +132,7 @@ const HeaderStyle = styled.header`
           left: 0;
           width: 1.5rem;
           height: 100%;
-          background-color: rgb(var(--light-color), 0.25);
+          background-color: rgb(var(--light-color), 0.5);
           transform: skewX(-30deg) translateX(-600%);
           transition: 0.5s;
         }
@@ -156,10 +158,10 @@ const Header = () => {
               <Link href="#about">About</Link>
             </li>
             <li>
-              <Link href="#work">Work</Link>
+              <Link href="#skill">Skill</Link>
             </li>
             <li>
-              <Link href="#skill">Skill</Link>
+              <Link href="#work">Work</Link>
             </li>
             <li>
               <Link href="#contact">Contact</Link>
@@ -167,7 +169,14 @@ const Header = () => {
           </ul>
         </div>
         <div className="icons">
-          <button title="Hire Now">Hire Now</button>
+          <a
+            href="../public/document/resume.pdf"
+            title="Hire Now"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Hire Now
+          </a>
         </div>
       </div>
     </HeaderStyle>

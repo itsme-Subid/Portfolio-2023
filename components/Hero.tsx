@@ -1,6 +1,4 @@
-// import Image from "next/image";
 import styled from "styled-components";
-// import profile from "../public/profile.jpg";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, MeshDistortMaterial, Sphere } from "@react-three/drei";
 
@@ -27,10 +25,10 @@ const Section = styled.section`
     }
     & h2 {
       font-weight: 600;
-      color: rgb(var(--dark-color));
+      color: rgb(var(--light-color));
       & span {
         font-size: 1.5rem;
-        color: rgb(var(--dark-color));
+        color: rgb(var(--light-color));
       }
       & strong {
         font-size: 3rem;
@@ -42,7 +40,7 @@ const Section = styled.section`
     & p {
       font-size: 1rem;
       font-weight: 500;
-      color: rgb(var(--dark-color), 0.8);
+      color: rgb(var(--light-color), 0.8);
       margin-bottom: 1rem;
     }
     & button {
@@ -83,9 +81,33 @@ const Section = styled.section`
     align-items: center;
     width: 100%;
     height: 100%;
+    isolation: isolate;
     @media screen and (max-width: 50rem) {
       flex: 1;
       height: 100vh;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgb(var(--dark-color), 0.5);
+      backdrop-filter: blur(0.05rem);
+      z-index: 1;
+      pointer-events: none;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 100%;
+      height: 5%;
+      transform: rotate(-30deg);
+      background-color: rgb(var(--primary-color), 0.75);
+      filter: blur(3rem);
+      border-radius: 50%;
+      z-index: -1;
+      pointer-events: none;
     }
     & img {
       position: absolute;
@@ -124,9 +146,12 @@ const Hero = () => {
       </div>
       <div className="right">
         <Canvas>
-          <ambientLight intensity={1} />
-          <directionalLight position={[3, 5, 5]} />
-          <directionalLight position={[-10, -12, -12]} />
+          <directionalLight position={[3, 5, 5]} color="#25d366" />
+          <directionalLight
+            position={[-10, -12, -12]}
+            intensity={0.25}
+            color="#25d366"
+          />
           <OrbitControls enableZoom={false} autoRotate />
           <Sphere
             args={[1, 100, 200]}
@@ -237,7 +262,6 @@ const Hero = () => {
             />
           </Sphere>
         </Canvas>
-        {/* <Image src={profile} width={500} height={500} alt="" /> */}
       </div>
     </Section>
   );

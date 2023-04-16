@@ -22,6 +22,12 @@ const Section = styled.section`
     gap: 2rem;
     & button {
       position: relative;
+      color: transparent;
+      -webkit-text-stroke: 1px rgb(var(--light-color));
+      font-size: 1.25rem;
+      letter-spacing: 0.1rem;
+      font-weight: 600;
+      transition: 0.15s;
       &.active::before {
         content: "";
         position: absolute;
@@ -31,7 +37,6 @@ const Section = styled.section`
         height: 0.15rem;
         border-radius: 1rem;
         background-color: rgb(var(--primary-color));
-        transition: 0.15s;
       }
     }
   }
@@ -46,7 +51,7 @@ const Section = styled.section`
       font-size: 1.5rem;
       font-weight: 600;
       text-align: left;
-      color: rgb(var(--dark-color), 0.8);
+      color: rgb(var(--light-color), 0.8);
     }
     & .timeline {
       display: flex;
@@ -81,8 +86,8 @@ const Section = styled.section`
               height: calc(100% + 1rem);
               top: 1.25rem;
               width: 1px;
-              background-color: rgb(var(--dark-color), 0.2);
-              left: -2.65%;
+              background-color: rgb(var(--light-color), 0.2);
+              left: -2.75%;
               @media screen and (max-width: 50rem) {
                 left: -5%;
               }
@@ -95,7 +100,7 @@ const Section = styled.section`
               border-radius: 50% 0 50% 50%;
               transform-origin: left;
               top: 0.4rem;
-              background-color: rgb(var(--tertiary-color));
+              background-color: rgb(var(--primary-color));
               left: -2.5%;
               transform: translateX(-50%) rotate(45deg);
               @media screen and (max-width: 50rem) {
@@ -112,7 +117,7 @@ const Section = styled.section`
           justify-content: flex-start;
           align-items: center;
           gap: 1rem;
-          color: rgb(var(--dark-color), 0.75);
+          color: rgb(var(--light-color), 0.75);
           @media screen and (max-width: 50rem) {
             flex-direction: column;
             justify-content: center;
@@ -129,7 +134,7 @@ const Section = styled.section`
           }
         }
         & p {
-          color: rgb(var(--dark-color), 0.75);
+          color: rgb(var(--light-color), 0.75);
           font-weight: 400;
           &.limit-line-1 {
             display: -webkit-box;
@@ -146,8 +151,8 @@ const Section = styled.section`
           order: 1;
           font-weight: 700;
           letter-spacing: 1px;
-          color: rgb(var(--dark-color), 0.75);
-          border: 1px solid rgb(var(--dark-color), 0.1);
+          color: rgb(var(--light-color), 0.75);
+          border: 1px solid rgb(var(--light-color), 0.1);
           padding: 0.5rem 1rem;
           border-radius: 5rem;
           margin-right: auto;
@@ -157,7 +162,7 @@ const Section = styled.section`
           }
           &:hover {
             border: 1px solid transparent;
-            background-color: rgb(var(--dark-color), 0.1);
+            background-color: rgb(var(--light-color), 0.1);
           }
         }
         & .skills {
@@ -172,7 +177,8 @@ const Section = styled.section`
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.25rem;
+            color: rgb(var(--light-color));
             border: 1px solid rgb(var(--primary-color), 0.5);
             border-radius: 5rem;
             isolation: isolate;
@@ -190,10 +196,9 @@ const Section = styled.section`
               transition: all 0.5s;
             }
             &:hover {
-              color: rgb(var(--light-color));
               border: 1px solid transparent;
-              box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-                rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+              box-shadow: rgba(255, 255, 255, 0.16) 0px 10px 36px 0px,
+                rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
               &::before {
                 transform: translateY(0);
               }

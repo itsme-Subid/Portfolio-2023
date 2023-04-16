@@ -10,11 +10,11 @@ const Header = lazy(() => import("./../components/Header"));
 
 const GlobalStyle = createGlobalStyle`
   :root{
-    --light-color: 255, 255, 255;
-    --dark-color: 2, 2, 2;
-    --primary-color: 253, 139, 0;
+    --light-color: 252, 245, 235;
+    --dark-color: 17, 27, 33;
+    --primary-color: 37, 211, 102;
     --secondary-color: 0, 134, 255;
-    --tertiary-color: 0, 98, 106;
+    --white-color: 255, 255, 255;
     scroll-behavior: smooth;
   }
   ::-webkit-scrollbar {
@@ -32,8 +32,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     position: relative;
-    background-color: rgb(var(--light-color));
-    color: rgb(var(--dark-color));
+    background-color: rgb(var(--dark-color));
+    color: rgb(var(--light-color));
   }
   .container {
     margin-inline: auto;
