@@ -157,6 +157,7 @@ const Hero = () => {
             args={[1, 100, 200]}
             scale={2}
             key={undefined}
+            onLostPointerCapture={undefined}
             material={undefined}
             quaternion={undefined}
             type={undefined}
