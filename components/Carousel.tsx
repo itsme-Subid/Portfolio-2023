@@ -95,18 +95,10 @@ const Carousel = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const previousSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(slides.length - 1);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
   const nextSlide = () => {
-    if (currentSlide === slides.length - 1) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
   useEffect(() => {
     if (autoSlide) {
