@@ -79,11 +79,10 @@ const Section = styled.section`
               content: "";
               position: absolute;
               height: calc(100% + 1rem);
-              top: 0.5rem;
+              top: 1.25rem;
               width: 1px;
               background-color: rgb(var(--dark-color), 0.2);
-              left: -2.5%;
-              transform: translateX(-50%);
+              left: -2.65%;
               @media screen and (max-width: 50rem) {
                 left: -5%;
               }
@@ -94,13 +93,11 @@ const Section = styled.section`
               height: 0.75rem;
               width: 0.75rem;
               border-radius: 50% 0 50% 50%;
-              rotate: 45deg;
-              transform: rotate(45deg);
               transform-origin: left;
               top: 0.4rem;
               background-color: rgb(var(--tertiary-color));
               left: -2.5%;
-              transform: translateX(-50%);
+              transform: translateX(-50%) rotate(45deg);
               @media screen and (max-width: 50rem) {
                 left: -5%;
               }
@@ -133,7 +130,7 @@ const Section = styled.section`
         }
         & p {
           color: rgb(var(--dark-color), 0.75);
-          font-weight: 200;
+          font-weight: 400;
           &.limit-line-1 {
             display: -webkit-box;
             -webkit-line-clamp: 1;
@@ -170,19 +167,36 @@ const Section = styled.section`
           flex-wrap: wrap;
           gap: 0.5rem;
           & span {
-            padding: 0.5rem 1.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgb(var(--primary-color), 0.5);
             border-radius: 5rem;
-            color: rgb(var(--dark-color), 0.8);
-            border: 1px solid rgb(var(--primary-color));
-            transition: 0.15s;
-            letter-spacing: 1px;
+            isolation: isolate;
             cursor: pointer;
-            &:hover {
+            transition: all 0.15s;
+            &::before {
+              content: "";
+              position: absolute;
+              width: 150%;
+              height: 150%;
+              transform: translateY(150%);
               background-color: rgb(var(--primary-color));
+              border-radius: 50%;
+              z-index: -1;
+              transition: all 0.5s;
+            }
+            &:hover {
               color: rgb(var(--light-color));
+              border: 1px solid transparent;
+              box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+              &::before {
+                transform: translateY(0);
+              }
             }
           }
         }

@@ -4,16 +4,16 @@ import styled, { keyframes } from "styled-components";
 const blink = keyframes`
   0%,
   100% {
-    scale: 0;
+    transform: scale(0);
   }
   49% {
-    scale: 0;
+    transform: scale(0);
   }
   50% {
-    scale: 1;
+    transform: scale(1);
   }
   99% {
-    scale: 1;
+    transform: scale(1);
   }
 `;
 
@@ -167,7 +167,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="icons">
-          <button>Hire Now</button>
+          <button title="Hire Now">Hire Now</button>
         </div>
       </div>
     </HeaderStyle>

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { lazy } from "react";
 import Head from "next/head";
 
-const Header = lazy(() => import("../../components/Header"));
+const Header = lazy(() => import("./../components/Header"));
 
 const GlobalStyle = createGlobalStyle`
   :root{
