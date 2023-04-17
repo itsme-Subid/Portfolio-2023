@@ -43,7 +43,7 @@ const Section = styled.section`
       color: rgb(var(--light-color), 0.8);
       margin-bottom: 1rem;
     }
-    & button {
+    & a {
       font-size: 1rem;
       font-weight: 500;
       color: rgb(var(--light-color));
@@ -142,7 +142,14 @@ const Hero = () => {
           & MERN Stack, including TypeScript. I create scalable and performant
           web applications with intuitive user interfaces.
         </p>
-        <button>Download CV</button>
+        <a
+          href="./document/resume.pdf"
+          title="Hire Now"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download CV
+        </a>
       </div>
       <div className="right">
         <Canvas>

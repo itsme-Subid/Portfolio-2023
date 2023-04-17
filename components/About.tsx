@@ -196,6 +196,7 @@ const Section = styled.section`
               transition: all 0.5s;
             }
             &:hover {
+              color: rgb(var(--dark-color));
               border: 1px solid transparent;
               box-shadow: rgba(255, 255, 255, 0.16) 0px 10px 36px 0px,
                 rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;

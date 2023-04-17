@@ -61,6 +61,9 @@ const Section = styled.section`
       &:hover {
         transform: scale(1.1);
       }
+      & img.invert {
+        filter: invert(1);
+      }
     }
   }
 `;
@@ -102,7 +105,13 @@ const Skill = () => {
           />
         </li>
         <li title="Three.js">
-          <Image src={three} width={width} height={height} alt="Three.js" />
+          <Image
+            src={three}
+            width={width}
+            height={height}
+            alt="Three.js"
+            className="invert"
+          />
         </li>
         <li title="Tailwind CSS">
           <Image
@@ -124,7 +133,13 @@ const Skill = () => {
           <Image src={nodejs} width={width} height={height} alt="Node.js" />
         </li>
         <li title="Express.js">
-          <Image src={express} width={width} height={height} alt="Express.js" />
+          <Image
+            src={express}
+            width={width}
+            height={height}
+            alt="Express.js"
+            className="invert"
+          />
         </li>
         <li title="Firebase">
           <Image src={firebase} width={width} height={height} alt="Firebase" />
@@ -144,7 +159,13 @@ const Skill = () => {
           <Image src={git} width={width} height={height} alt="Git" />
         </li>
         <li title="GitHub">
-          <Image src={github} width={width} height={height} alt="GitHub" />
+          <Image
+            src={github}
+            width={width}
+            height={height}
+            alt="GitHub"
+            className="invert"
+          />
         </li>
         <li title="MySQL">
           <Image src={mysql} width={width} height={height} alt="MySQL" />

@@ -149,7 +149,7 @@ const Header = () => {
     <HeaderStyle>
       <div className="navbar container">
         <div className="links">
-          <h1>SUBID DAS</h1>
+          <h1>DEVSUBID</h1>
           <ul>
             <li>
               <Link href="#home">Home</Link>
@@ -170,7 +170,7 @@ const Header = () => {
         </div>
         <div className="icons">
           <a
-            href="../public/document/resume.pdf"
+            href="./document/resume.pdf"
             title="Hire Now"
             target="_blank"
             rel="noopener noreferrer"
