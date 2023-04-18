@@ -37,11 +37,60 @@ const Section = styled.section`
         text-shadow: 0 0 0.75rem rgb(var(--primary-color), 0.25);
       }
     }
-    & p {
-      font-size: 1rem;
+    & .scroll {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      color: rgb(var(--light-color));
+      font-size: 1.25rem;
       font-weight: 500;
-      color: rgb(var(--light-color), 0.8);
+      margin-block: 0.5rem;
+      overflow: hidden;
+      & .scroll-containter {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+        color: rgb(var(--primary-color));
+        & .auto-scroll {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 1rem;
+          width: 100%;
+          height: 100%;
+          animation: scroll 3s linear infinite forwards;
+          @keyframes scroll {
+            0%,
+            30% {
+              top: 2.5rem;
+            }
+            33%,
+            63% {
+              top: 0;
+            }
+            66%,
+            96% {
+              top: -2.5rem;
+            }
+          }
+        }
+      }
+    }
+    p {
+      font-size: 1.25rem;
+      font-weight: 500;
       margin-bottom: 1rem;
+      color: rgb(var(--light-color));
     }
     & a {
       font-size: 1rem;
@@ -137,10 +186,19 @@ const Hero = () => {
           <span>Hello World, I&apos;m </span>
           <strong>SUBID DAS</strong>
         </h2>
+        <div className="scroll">
+          <div>I&apos;m a</div>
+          <div className="scroll-containter">
+            <div className="auto-scroll">
+              <div className="auto-scroll--item">Student</div>
+              <div className="auto-scroll--item">Developer</div>
+              <div className="auto-scroll--item">Programmer</div>
+            </div>
+          </div>
+        </div>
         <p>
-          I&apos;m an experienced Full-Stack Developer with expertise in Next.js
-          & MERN Stack, including TypeScript. I create scalable and performant
-          web applications with intuitive user interfaces.
+          I&apos;m a 18 year old developer from India. I love to code and make
+          cool stuff.
         </p>
         <a
           href="./document/resume.pdf"
