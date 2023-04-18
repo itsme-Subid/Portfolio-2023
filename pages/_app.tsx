@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import type { Page } from "@/page";
 import { Poppins } from "next/font/google";
 import { createGlobalStyle } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +7,8 @@ import { useRouter } from "next/router";
 import { lazy } from "react";
 import Head from "next/head";
 
-const Header = lazy(() => import("./../components/Header"));
+const Header = lazy(() => import("@/components/Header"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const GlobalStyle = createGlobalStyle`
   :root{
@@ -63,7 +65,12 @@ const container = {
   show: { opacity: 1, x: 0 },
 };
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps & {
+  Component: Page;
+}) {
   const router = useRouter();
   return (
     <>
@@ -79,8 +86,9 @@ export default function App({ Component, pageProps }: AppProps) {
           animate="show"
           className={poppins.variable}
         >
-          <Header />
+          {!Component.getLayout && <Header />}
           <Component {...pageProps} />
+          {!Component.getLayout && <Footer />}
         </motion.div>
       </AnimatePresence>
     </>

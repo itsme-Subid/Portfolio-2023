@@ -84,19 +84,37 @@ const Section = styled.section`
         border-color: rgb(var(--secondary-color));
       }
       & button[type="submit"] {
-        background-color: rgb(var(--primary-color));
-        border: 1px solid transparent;
-        outline: none;
-        color: rgb(var(--dark-color));
-        font-weight: 700;
+        position: relative;
+        font-weight: 600;
+        font-size: small;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
-        transition: 0.15s;
-        &:hover,
-        &:focus-visible {
-          border: 1px solid rgb(var(--light-color), 0.25);
-          box-shadow: 0 0.15rem 0.5rem rgb(var(--primary-color), 0.25),
-            0 0.25rem 1rem rgb(var(--primary-color), 0.1);
+        color: rgb(var(--dark-color));
+        padding: 0.75rem 1.5rem;
+        border-radius: 5rem;
+        background-color: rgb(var(--primary-color));
+        border: 1px solid rgb(var(--light-color), 0.1);
+        cursor: pointer;
+        overflow: hidden;
+        box-shadow: 0 0.15rem 0.5rem rgb(var(--primary-color), 0.25),
+          0 0.25rem 1rem rgb(var(--primary-color), 0.1);
+        transition: 0.5s;
+        &:hover {
+          box-shadow: 0 0 0.75rem rgb(var(--primary-color), 0.25);
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 3rem;
+          height: 100%;
+          background-color: rgb(var(--light-color), 0.5);
+          transform: skewX(-30deg) translateX(-600%);
+          transition: 0.75s;
+        }
+        &:hover::before {
+          transform: skewX(-30deg) translateX(2500%);
         }
       }
     }
