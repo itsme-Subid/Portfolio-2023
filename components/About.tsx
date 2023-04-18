@@ -12,9 +12,6 @@ const Section = styled.section`
   flex-direction: column;
   gap: 2rem;
   transition: 0.15s;
-  @media screen and (max-width: 50rem) {
-    /* min-height: 200vh; */
-  }
   & nav {
     display: flex;
     justify-content: center;
@@ -64,6 +61,12 @@ const Section = styled.section`
         justify-content: center;
         flex-direction: column;
         gap: 0.5rem;
+        & h3 {
+          color: rgb(var(--light-color), 0.8);
+          letter-spacing: 0.1rem;
+          font-size: 1.5rem;
+          font-weight: 200;
+        }
         & .group {
           margin-left: auto;
           width: 95%;

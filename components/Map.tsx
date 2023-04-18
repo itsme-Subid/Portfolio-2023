@@ -3,8 +3,10 @@ import {
   Geographies,
   Geography,
   Annotation,
+  Marker,
 } from "react-simple-maps";
 import styled from "styled-components";
+import profile from "../public/img/profile.jpeg";
 
 const ComposableMapStyled = styled(ComposableMap)`
   width: 90%;
@@ -41,26 +43,35 @@ const Map = () => {
           ))
         }
       </Geographies>
-      <Annotation
-        subject={[80.67, 20.5]}
-        dx={90}
-        dy={90}
-        connectorProps={{
-          stroke: "rgb(var(--light-color))",
-          strokeWidth: 2,
-          strokeLinecap: "round",
-        }}
-      >
-        <text
-          x="70"
-          y="15"
-          textAnchor="end"
-          alignmentBaseline="middle"
-          fill="rgb(var(--light-color))"
-        >
-          {"I'm in Kolkata"}
-        </text>
-      </Annotation>
+      <Marker coordinates={[80.25, 20.9]}>
+        <defs>
+          <clipPath id="circle">
+            <circle
+              cx="50"
+              cy="50"
+              r="20"
+              style={{ transform: "translate(-35px, -20px)" }}
+            />
+          </clipPath>
+        </defs>
+        <image
+          x="-5"
+          y="10"
+          width="40"
+          height="40"
+          xlinkHref={profile.src}
+          clip-path="url(#circle)"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          r="20"
+          style={{ transform: "translate(-35px, -20px)" }}
+          fill="none"
+          stroke="rgb(var(--light-color))"
+          stroke-width="1px"
+        />
+      </Marker>
     </ComposableMapStyled>
   );
 };
