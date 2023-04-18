@@ -2,17 +2,17 @@ import styled from "styled-components";
 import Map from "./Map";
 
 const Section = styled.section`
-  position: relative;
+  position: sticky;
+  top: 0;
   min-height: 100vh;
-  padding: 4rem 0;
-  scroll-snap-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
   transition: 0.15s;
   @media screen and (max-width: 50rem) {
-    min-height: 200vh;
+    height: 200vh;
+    width: 100% !important;
     flex-direction: column;
   }
   & .form-container {
@@ -24,6 +24,7 @@ const Section = styled.section`
     gap: 1rem;
     @media screen and (max-width: 50rem) {
       min-height: 100vh;
+      padding-inline: 1rem;
       width: 100%;
     }
     & h2 {
@@ -105,11 +106,6 @@ const Section = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
-      & > svg {
-        top: 50% !important;
-        right: 50% !important;
-        transform: translate(40%, -45%) scale(1.5) !important;
-      }
     }
   }
 `;

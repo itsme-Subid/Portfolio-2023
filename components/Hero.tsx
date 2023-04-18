@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, MeshDistortMaterial, Sphere } from "@react-three/drei";
 
 const Section = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: center;
   display: flex;
   justify-content: space-between;

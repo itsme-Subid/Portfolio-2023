@@ -73,6 +73,7 @@ const CarouselStyled = styled.div<{ currentSlide: number }>`
         height: 0.5rem;
         border-radius: 50%;
         background-color: rgb(var(--white-color), 0.75);
+        cursor: pointer;
         transition: 0.15s;
         &.active {
           width: 0.75rem;
@@ -126,6 +127,7 @@ const Carousel = ({
           {slides.map((_, index) => (
             <div
               key={index}
+              onClick={() => setCurrentSlide(index)}
               className={`indicator ${index === currentSlide ? "active" : ""}`}
             />
           ))}

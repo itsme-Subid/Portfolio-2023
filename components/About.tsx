@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Section = styled.section`
+  position: sticky;
+  top: 0;
   min-height: 100vh;
-  padding: 4rem 0;
-  scroll-snap-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@ const Section = styled.section`
   gap: 2rem;
   transition: 0.15s;
   @media screen and (max-width: 50rem) {
-    min-height: 200vh;
+    /* min-height: 200vh; */
   }
   & nav {
     display: flex;

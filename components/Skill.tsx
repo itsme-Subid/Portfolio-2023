@@ -19,9 +19,9 @@ import framerMotion from "../public/svg/framer-motion.svg";
 import three from "../public/svg/three.svg";
 
 const Section = styled.section`
-  position: relative;
-  height: 100vh;
-  scroll-snap-align: center;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,6 +48,7 @@ const Section = styled.section`
     gap: 1rem;
     list-style: none;
     & li {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,11 +56,28 @@ const Section = styled.section`
       height: 8rem;
       border-radius: 50%;
       background-color: rgb(var(--secondary-color), 0.05);
+      border: 1px solid transparent;
       user-select: none;
+      overflow: hidden;
       cursor: pointer;
       transition: 0.15s;
       &:hover {
-        transform: scale(1.1);
+        border: 1px solid rgb(var(--primary-color));
+        box-shadow: rgb(var(--primary-color), 0.16) 0px 10px 36px 0px,
+          rgb(var(--primary-color), 0.06) 0px 0px 0px 1px;
+        transform: scale(1.05);
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgb(var(--primary-color), 0.075) 1%,
+          rgb(var(--primary-color), 0.075) 5%,
+          transparent 50%,
+          transparent 100%
+        );
       }
       & img.invert {
         filter: invert(1);

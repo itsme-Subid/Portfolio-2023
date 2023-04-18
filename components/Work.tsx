@@ -7,12 +7,12 @@ import webinrush from "../public/img/webinrush.png";
 import Carousel from "./Carousel";
 
 const Section = styled.section`
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-  scroll-snap-align: center;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
   display: grid;
   place-items: center;
+  overflow: hidden;
   color: rgb(var(--light-color));
   &::before {
     content: "works";
@@ -61,6 +61,7 @@ const Section = styled.section`
       justify-content: flex-end;
       align-items: center;
       & h3 {
+        text-align: center;
         font-size: 2rem;
         font-weight: 700;
         text-transform: uppercase;
