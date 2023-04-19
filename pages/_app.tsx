@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { lazy } from "react";
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
 
 const Header = lazy(() => import("@/components/Header"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -66,15 +67,15 @@ const container = {
   show: { opacity: 1, x: 0 },
 };
 
-export default function App({
+const App = ({
   Component,
-  pageProps,
+  pageProps: { session, ...pageProps },
 }: AppProps & {
   Component: Page;
-}) {
+}) => {
   const router = useRouter();
   return (
-    <>
+    <SessionProvider session={session}>
       <Head>
         <title>Portfolio</title>
       </Head>
@@ -92,6 +93,8 @@ export default function App({
           {!Component.getLayout && <Footer />}
         </motion.div>
       </AnimatePresence>
-    </>
+    </SessionProvider>
   );
-}
+};
+
+export default App;
