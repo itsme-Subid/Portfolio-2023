@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     --primary-color: 37, 211, 102;
     --secondary-color: 0, 134, 255;
     --white-color: 255, 255, 255;
+    --danger-color: 255, 0, 0;
     scroll-behavior: smooth;
   }
   ::-webkit-scrollbar {

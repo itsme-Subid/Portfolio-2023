@@ -2,6 +2,14 @@ import styled from "styled-components";
 import Map from "./Map";
 import { BsTwitter, BsLinkedin, BsInstagram } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
+import { v4 as uuid } from "uuid";
+import { Message } from "@/message";
+import { db } from "@/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { object, string, InferType } from "yup";
 
 const Section = styled.section`
   position: sticky;
@@ -82,6 +90,9 @@ const Section = styled.section`
       & input:focus-visible,
       & textarea:focus-visible {
         border-color: rgb(var(--secondary-color));
+      }
+      & .alert {
+        color: rgb(var(--danger-color), 0.75);
       }
       & button[type="submit"] {
         position: relative;
@@ -180,17 +191,64 @@ const Section = styled.section`
   }
 `;
 
+const uploadMessage = async (message: Message) => {
+  await addDoc(collection(db, "messages"), {
+    message,
+  });
+};
+
+const getIp = async () => {
+  return await axios.post("/api/getIp").then((res) => res.data.ip);
+};
+
+let messageSchema = object({
+  name: string().min(2, "Name must be at least 2 characters long").required(),
+  email: string().email("Must be a valid email").required("Email is required"),
+  message: string()
+    .min(2, "Message must be at least 2 characters long")
+    .required(),
+});
+type FormData = InferType<typeof messageSchema>;
+
 const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(messageSchema),
+  });
+  const addMessage = async ({ name, email, message }: FormData) => {
+    if (!message) return;
+    const id = uuid();
+    const ip = await getIp();
+    const data: Message = {
+      id,
+      ip,
+      name,
+      email,
+      message,
+      createdAt: serverTimestamp(),
+    };
+    uploadMessage(data);
+  };
   return (
     <Section className="container" id="contact">
       <div className="form-container">
         <h2>
           Contact <span>Me</span>
         </h2>
-        <form>
-          <input type="text" placeholder="Name" name="name" />
-          <input type="email" placeholder="Email" name="email" />
-          <textarea placeholder="Message" rows={50} name="message"></textarea>
+        <form onSubmit={handleSubmit(addMessage)}>
+          <input type="text" placeholder="Name" {...register("name")} />
+          {errors.name && <p className="alert">{errors.name?.message}</p>}
+          <input type="email" placeholder="Email" {...register("email")} />
+          {errors.email && <p className="alert">{errors.email?.message}</p>}
+          <textarea
+            placeholder="Message"
+            rows={50}
+            {...register("message")}
+          ></textarea>
+          {errors.message && <p className="alert">{errors.message?.message}</p>}
           <button type="submit">Send</button>
         </form>
         <div className="connect">
