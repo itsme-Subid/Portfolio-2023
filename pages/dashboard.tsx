@@ -1,9 +1,14 @@
 import { GetServerSideProps } from "next";
 import { ReactElement } from "react";
 import { getSession } from "next-auth/react";
+import styled from "styled-components";
+
+const DashboardStyled = styled.div`
+  padding-block: 3rem;
+`;
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return <DashboardStyled className="container">Dashboard</DashboardStyled>;
 };
 
 export default Dashboard;

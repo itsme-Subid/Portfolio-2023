@@ -70,13 +70,13 @@ const Signin = () => {
   // google handler function
   async function handleGoogleLogin() {
     signIn("google", {
-      callbackUrl: "/dasboard",
+      callbackUrl: "/dashboard",
     });
   }
   // github handler function
   async function handleGithubLogin() {
     signIn("github", {
-      callbackUrl: "/dasboard",
+      callbackUrl: "/dashboard",
     });
   }
   const login = [
@@ -130,6 +130,6 @@ export default Signin;
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
   return !!session
-    ? { redirect: { destination: "/chat", permanent: false } }
+    ? { redirect: { destination: "/dashboard", permanent: false } }
     : { props: { session } };
 };

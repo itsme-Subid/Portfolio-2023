@@ -188,9 +188,9 @@ const Contact = () => {
           Contact <span>Me</span>
         </h2>
         <form>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <textarea placeholder="Message" rows={50}></textarea>
+          <input type="text" placeholder="Name" name="name" />
+          <input type="email" placeholder="Email" name="email" />
+          <textarea placeholder="Message" rows={50} name="message"></textarea>
           <button type="submit">Send</button>
         </form>
         <div className="connect">
