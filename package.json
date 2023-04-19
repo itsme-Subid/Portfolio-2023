@@ -31,7 +31,7 @@
     "request-ip": "^3.3.0",
     "styled-components": "^5.3.9",
     "three": "^0.151.2",
-    "typescript": "5.0.2",
+    "typescript": "5.0.4",
     "uuid": "^9.0.0",
     "yup": "^1.1.1"
   },
