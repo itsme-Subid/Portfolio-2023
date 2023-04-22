@@ -2,11 +2,10 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  Annotation,
   Marker,
 } from "react-simple-maps";
 import styled from "styled-components";
-import profile from "../public/img/profile.jpeg";
+import profile from "/img/profile.jpeg";
 
 const ComposableMapStyled = styled(ComposableMap)`
   width: 90%;
@@ -18,7 +17,7 @@ const ComposableMapStyled = styled(ComposableMap)`
   @media screen and (max-width: 50rem) {
     top: 50%;
     right: 50%;
-    transform: translate(20%, -26%) scale(2.5);
+    transform: translate(28%, -26%) scale(2.5);
   }
 `;
 
@@ -59,7 +58,7 @@ const Map = () => {
           y="10"
           width="40"
           height="40"
-          xlinkHref={profile.src}
+          xlinkHref={profile}
           clip-path="url(#circle)"
         />
         <circle

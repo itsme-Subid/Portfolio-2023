@@ -12,6 +12,9 @@ const Section = styled.section`
   flex-direction: column;
   gap: 2rem;
   transition: 0.15s;
+  @media screen and (max-width: 50rem) {
+    position: static;
+  }
   & nav {
     display: flex;
     justify-content: center;

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 const blink = keyframes`
@@ -152,19 +152,19 @@ const Header = () => {
           <h1>DEVSUBID</h1>
           <ul>
             <li>
-              <Link href="#home">Home</Link>
+              <Link to="#home">Home</Link>
             </li>
             <li>
-              <Link href="#about">About</Link>
+              <Link to="#about">About</Link>
             </li>
             <li>
-              <Link href="#skill">Skill</Link>
+              <Link to="#skill">Skill</Link>
             </li>
             <li>
-              <Link href="#work">Work</Link>
+              <Link to="#work">Work</Link>
             </li>
             <li>
-              <Link href="#contact">Contact</Link>
+              <Link to="#contact">Contact</Link>
             </li>
           </ul>
         </div>

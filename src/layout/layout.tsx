@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import thumbnail from "@/public/img/layout.jpg";
+import thumbnail from "/img/layout.jpg";
 
 const LayoutContainer = styled.div`
   min-height: 80vh;
@@ -45,7 +45,7 @@ const Thumbnail = styled.div`
       rgb(var(--dark-color), 0.375),
       rgb(var(--dark-color), 0.8)
     ),
-    url(${thumbnail.src});
+    url(${thumbnail});
   @media screen and (max-width: 50rem) {
     padding-top: 6rem;
   }

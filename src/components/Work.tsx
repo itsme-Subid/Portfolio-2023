@@ -1,9 +1,8 @@
-import Image from "next/image";
 import styled from "styled-components";
-import news365 from "../public/img/news365.png";
-import infotech from "../public/img/infotech.png";
-import movie108 from "../public/img/movie108.png";
-import webinrush from "../public/img/webinrush.png";
+import news365 from "/img/news365.png";
+import infotech from "/img/infotech.png";
+import movie108 from "/img/movie108.png";
+import webinrush from "/img/webinrush.png";
 import Carousel from "./Carousel";
 
 const Section = styled.section`
@@ -14,6 +13,10 @@ const Section = styled.section`
   place-items: center;
   overflow: hidden;
   color: rgb(var(--light-color));
+  @media screen and (max-width: 50rem) {
+    position: relative;
+    top: auto;
+  }
   &::before {
     content: "works";
     position: absolute;
@@ -25,6 +28,9 @@ const Section = styled.section`
     color: rgb(var(--secondary-color), 0.5);
     opacity: 0.1;
     z-index: -1;
+    @media screen and (max-width: 50rem) {
+      z-index: 0;
+    }
   }
   & .slide {
     flex: 0 0 100%;
@@ -127,10 +133,10 @@ const Work = () => {
   ];
   return (
     <Section className="container" id="work">
-      <Carousel autoSlide={true}>
+      <Carousel autoSlide={true} autoSlideInterval={3000}>
         {images.map((image, index) => (
           <div key={index} className="slide">
-            <Image src={image.src} alt={image.alt} />
+            <img src={image.src} alt={image.alt} />
             <div className="content">
               <h3>{image.title}</h3>
               <p>{image.description}</p>

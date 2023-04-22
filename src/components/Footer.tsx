@@ -7,7 +7,7 @@ import {
   BsYoutube,
 } from "react-icons/bs";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 const FooterElement = styled.footer`
   background-color: rgb(var(--secondary-color), 0.25);
@@ -96,6 +96,9 @@ const FooterElement = styled.footer`
         box-shadow: 0 0.15rem 0.5rem rgb(var(--primary-color), 0.25),
           0 0.25rem 1rem rgb(var(--primary-color), 0.1);
         transition: 0.5s;
+        @media screen and (max-width: 50rem) {
+          margin-inline: auto;
+        }
         &:hover {
           box-shadow: 0 0 0.75rem rgb(var(--primary-color), 0.25);
         }
@@ -126,6 +129,7 @@ const FooterElement = styled.footer`
     font-size: 0.75rem;
     @media screen and (max-width: 50rem) {
       flex-direction: column;
+      gap: 1rem;
     }
     & .left {
       display: flex;
@@ -161,7 +165,7 @@ const FooterElement = styled.footer`
 `;
 
 const Footer = () => {
-  let original = "DEVSUBID";
+  const original = "DEVSUBID";
   const [logo, setLogo] = useState<string>(original);
   const mouseOver = (): void => {
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -170,7 +174,7 @@ const Footer = () => {
       setLogo((prev) =>
         prev
           .split("")
-          .map((letter, index) => {
+          .map((_, index) => {
             if (index < iterations) {
               return original[index];
             }
@@ -197,14 +201,14 @@ const Footer = () => {
               <ul className="description">
                 <li>
                   Designed and built with all the love in the world by the
-                  DEVSUBID using Next.js.
+                  DEVSUBID using React.js.
                 </li>
                 <li>Code licensed GNU General Public License v3.0.</li>
               </ul>
             </div>
           </div>
           <div className="col">
-            <Link href="/dashboard" className="dashboard">
+            <Link to="/dashboard" className="dashboard">
               Dashboard
             </Link>
           </div>

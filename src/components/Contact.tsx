@@ -3,9 +3,9 @@ import Map from "./Map";
 import { BsTwitter, BsLinkedin, BsInstagram } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { v4 as uuid } from "uuid";
-import { Message } from "@/message";
-import { db } from "@/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+// import { Message } from "@/message";
+// import { db } from "@/firebase";
+// import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -25,6 +25,7 @@ const Section = styled.section`
     height: 200vh;
     width: 100% !important;
     flex-direction: column;
+    position: relative;
   }
   & .form-container {
     flex: 1;
@@ -191,17 +192,17 @@ const Section = styled.section`
   }
 `;
 
-const uploadMessage = async (message: Message) => {
-  await addDoc(collection(db, "messages"), {
-    message,
-  });
-};
+// const uploadMessage = async (message: Message) => {
+//   await addDoc(collection(db, "messages"), {
+//     message,
+//   });
+// };
 
 const getIp = async () => {
   return await axios.post("/api/getIp").then((res) => res.data.ip);
 };
 
-let messageSchema = object({
+const messageSchema = object({
   name: string().min(2, "Name must be at least 2 characters long").required(),
   email: string().email("Must be a valid email").required("Email is required"),
   message: string()
@@ -222,15 +223,15 @@ const Contact = () => {
     if (!message) return;
     const id = uuid();
     const ip = await getIp();
-    const data: Message = {
-      id,
-      ip,
-      name,
-      email,
-      message,
-      createdAt: serverTimestamp(),
-    };
-    uploadMessage(data);
+    // const data: Message = {
+    //   id,
+    //   ip,
+    //   name,
+    //   email,
+    //   message,
+    //   createdAt: serverTimestamp(),
+    // };
+    // uploadMessage(data);
   };
   return (
     <Section className="container" id="contact">
