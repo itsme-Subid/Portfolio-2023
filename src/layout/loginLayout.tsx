@@ -75,15 +75,14 @@ const Layout = ({ children }: Props) => {
     <LayoutContainer className="container">
       <div>
         <Thumbnail>
-          <h1>WebInRush.</h1>
+          <h1>DEVSUBID.</h1>
           <div className="description">
             <p>
-              WebInRush is an organization that makes websites for you.
-              WebInRush is an organization that specializes in creating
-              high-quality, user-friendly websites for its clients. Whether you
-              need a simple website or a complex eCommerce store, we can help.
-              Our team has years of experience building beautiful and functional
-              websites for both individuals and businesses.
+              👋 Hello World! I'm a Full-Stack Developer with a passion for
+              creating intuitive user interfaces. With years of experience
+              working with the Next.js & MERN Stack, including TypeScript, I
+              have a deep understanding of how to create scalable and performant
+              web applications.
             </p>
           </div>
         </Thumbnail>
