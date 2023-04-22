@@ -108,7 +108,6 @@ const Signin = () => {
       height: 60,
     },
   ];
-  // check the session if the user is already logged in, then redirect to the dashboard page
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {

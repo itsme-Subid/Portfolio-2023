@@ -222,10 +222,10 @@ const Contact = () => {
   const addMessage = async ({ name, email, message }: FormData) => {
     if (!message) return;
     const id: string = uuid();
-    const ip: string | null = await getIp();
+    // const ip: string | null = await getIp();
     const data: Message = {
       id,
-      ip,
+      // ip,
       name,
       email,
       message,
