@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Layout from "../layout/layout";
-import google from "/img/google.webp";
-import github from "/img/github.webp";
+// import google from "/img/google.webp";
+// import github from "/img/github.webp";
 
 const SigninStyled = styled.div`
   padding: 3rem;
