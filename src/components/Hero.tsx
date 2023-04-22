@@ -222,11 +222,21 @@ const Hero = () => {
             args={[1, 100, 200]}
             scale={2}
             key={undefined}
-            onLostPointerCapture={undefined}
             material={undefined}
             quaternion={undefined}
-            type={undefined}
+            attach={undefined}
+            onUpdate={undefined}
+            clear={undefined}
+            position={undefined}
+            up={undefined}
+            rotation={undefined}
+            matrix={undefined}
+            layers={undefined}
+            dispose={undefined}
+            geometry={undefined}
+            raycast={undefined}
             id={undefined}
+            type={undefined}
             onClick={undefined}
             onContextMenu={undefined}
             onDoubleClick={undefined}
@@ -240,14 +250,7 @@ const Hero = () => {
             onPointerOut={undefined}
             onWheel={undefined}
             onPointerMissed={undefined}
-            attach={undefined}
-            onUpdate={undefined}
-            position={undefined}
-            up={undefined}
-            rotation={undefined}
-            matrix={undefined}
-            layers={undefined}
-            dispose={undefined}
+            visible={undefined}
             uuid={undefined}
             name={undefined}
             parent={undefined}
@@ -289,7 +292,6 @@ const Hero = () => {
             add={undefined}
             remove={undefined}
             removeFromParent={undefined}
-            clear={undefined}
             getObjectById={undefined}
             getObjectByName={undefined}
             getObjectByProperty={undefined}
@@ -298,7 +300,6 @@ const Hero = () => {
             getWorldQuaternion={undefined}
             getWorldScale={undefined}
             getWorldDirection={undefined}
-            raycast={undefined}
             traverse={undefined}
             traverseVisible={undefined}
             traverseAncestors={undefined}
@@ -312,13 +313,11 @@ const Hero = () => {
             hasEventListener={undefined}
             removeEventListener={undefined}
             dispatchEvent={undefined}
-            geometry={undefined}
             morphTargetInfluences={undefined}
             morphTargetDictionary={undefined}
             isMesh={undefined}
             updateMorphTargets={undefined}
             getVertexPosition={undefined}
-            visible={undefined}
           >
             <MeshDistortMaterial
               attach="material"
