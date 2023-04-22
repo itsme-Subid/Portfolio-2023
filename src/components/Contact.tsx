@@ -3,9 +3,9 @@ import Map from "./Map";
 import { BsTwitter, BsLinkedin, BsInstagram } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { v4 as uuid } from "uuid";
-// import { Message } from "@/message";
-// import { db } from "@/firebase";
-// import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { Message } from "../../message";
+import { db } from "../../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -192,11 +192,11 @@ const Section = styled.section`
   }
 `;
 
-// const uploadMessage = async (message: Message) => {
-//   await addDoc(collection(db, "messages"), {
-//     message,
-//   });
-// };
+const uploadMessage = async (message: Message) => {
+  await addDoc(collection(db, "messages"), {
+    message,
+  });
+};
 
 const getIp = async () => {
   return await axios.post("/api/getIp").then((res) => res.data.ip);
@@ -223,15 +223,15 @@ const Contact = () => {
     if (!message) return;
     const id = uuid();
     const ip = await getIp();
-    // const data: Message = {
-    //   id,
-    //   ip,
-    //   name,
-    //   email,
-    //   message,
-    //   createdAt: serverTimestamp(),
-    // };
-    // uploadMessage(data);
+    const data: Message = {
+      id,
+      ip,
+      name,
+      email,
+      message,
+      createdAt: serverTimestamp(),
+    };
+    uploadMessage(data);
   };
   return (
     <Section className="container" id="contact">

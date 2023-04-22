@@ -152,19 +152,19 @@ const Header = () => {
           <h1>DEVSUBID</h1>
           <ul>
             <li>
-              <Link to="#home">Home</Link>
+              <Link to="/#home">Home</Link>
             </li>
             <li>
-              <Link to="#about">About</Link>
+              <Link to="/#about">About</Link>
             </li>
             <li>
-              <Link to="#skill">Skill</Link>
+              <Link to="/#skill">Skill</Link>
             </li>
             <li>
-              <Link to="#work">Work</Link>
+              <Link to="/#work">Work</Link>
             </li>
             <li>
-              <Link to="#contact">Contact</Link>
+              <Link to="/#contact">Contact</Link>
             </li>
           </ul>
         </div>

@@ -2,13 +2,17 @@ import { lazy } from "react";
 import { createGlobalStyle } from "styled-components";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Home from "./components/Home";
 
 const Header = lazy(() => import("./components/Header"));
 const Footer = lazy(() => import("./components/Footer"));
+const Home = lazy(() => import("./pages/Home"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Login = lazy(() => import("./pages/Login"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const GlobalStyle = createGlobalStyle`
   :root{
+    --font-poppins: 'Poppins', sans-serif;
     --light-color: 252, 245, 235;
     --dark-color: 17, 27, 33;
     --primary-color: 37, 211, 102;
@@ -31,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
   body {
+    color-scheme: dark;
     position: relative;
     background-color: rgb(var(--dark-color));
     color: rgb(var(--light-color));
@@ -60,7 +65,10 @@ const App = () => {
       <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
       <Footer />

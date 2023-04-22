@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import About from "./About";
-import Contact from "./Contact";
-import Hero from "./Hero";
-import Work from "./Work";
-import Skill from "./Skill";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Hero from "../components/Hero";
+import Work from "../components/Work";
+import Skill from "../components/Skill";
 
 const Container = styled(motion.div)`
   position: relative;

@@ -72,7 +72,7 @@ const Section = styled.section`
           @keyframes scroll {
             0%,
             30% {
-              top: 2.5rem;
+              top: 2.9rem;
             }
             33%,
             63% {
@@ -80,7 +80,7 @@ const Section = styled.section`
             }
             66%,
             96% {
-              top: -2.5rem;
+              top: -2.9rem;
             }
           }
         }
