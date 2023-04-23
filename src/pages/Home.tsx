@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Hero from "../components/Hero";
 import Work from "../components/Work";
 import Skill from "../components/Skill";
 
-const Container = styled(motion.div)`
+const Container = styled.div`
   position: relative;
   height: 100vh;
   scroll-behavior: smooth;
@@ -20,14 +19,9 @@ const Container = styled(motion.div)`
   }
 `;
 
-const container = {
-  hidden: { opacity: 0, x: "-100vw" },
-  show: { opacity: 1, x: 0 },
-};
-
 const Home = () => {
   return (
-    <Container variants={container} initial="hidden" animate="show">
+    <Container>
       <Hero />
       <About />
       <Skill />

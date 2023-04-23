@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { object, string, InferType } from "yup";
+import platform from "platform";
 
 const Section = styled.section`
   position: sticky;
@@ -233,6 +234,17 @@ const Contact = () => {
       name,
       email,
       message,
+      deviceDescription: [
+        `Name: ${platform.name}`,
+        `Manufacturer: ${platform.manufacturer}`,
+        `User Agent: ${platform.ua}`,
+        `OS family: ${platform.os?.family}`,
+        `OS version: ${platform.os?.version}`,
+        `Device Description: ${platform.description}`,
+        `Product: ${platform.product}`,
+        `Browser Version: ${platform.version}`,
+        `Layout: ${platform.layout}`,
+      ],
       createdAt: serverTimestamp(),
     };
     uploadMessage(data);
