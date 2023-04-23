@@ -38,7 +38,7 @@ const DashboardStyled = styled.div`
 `;
 
 const Dashboard = () => {
-  const [messages, loading, error] = useCollection(collection(db, "messages"), {
+  const [messages] = useCollection(collection(db, "messages"), {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
   const messagesList = messages?.docs.map((doc) => {
