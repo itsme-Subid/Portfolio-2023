@@ -8,7 +8,7 @@ import { db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-// import axios from "axios";
+import axios from "axios";
 import { object, string, InferType } from "yup";
 
 const Section = styled.section`
@@ -196,11 +196,14 @@ const uploadMessage = async (message: Message) => {
   await addDoc(collection(db, "messages"), {
     message,
   });
+  console.log(message);
 };
 
-// const getIp = async () => {
-//   return await axios.post("/api/getIp").then((res) => res.data.ip);
-// };
+const getIp = async () => {
+  return await axios
+    .post("https://getip-kappa.vercel.app/api/getip")
+    .then((res) => res.data.ip);
+};
 
 const messageSchema = object({
   name: string().min(2, "Name must be at least 2 characters long").required(),
@@ -215,6 +218,7 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(messageSchema),
@@ -222,16 +226,17 @@ const Contact = () => {
   const addMessage = async ({ name, email, message }: FormData) => {
     if (!message) return;
     const id: string = uuid();
-    // const ip: string | null = await getIp();
+    const ip: string | null = await getIp();
     const data: Message = {
       id,
-      // ip,
+      ip,
       name,
       email,
       message,
       createdAt: serverTimestamp(),
     };
     uploadMessage(data);
+    reset();
   };
   return (
     <Section className="container" id="contact">

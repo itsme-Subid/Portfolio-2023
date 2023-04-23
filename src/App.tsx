@@ -2,9 +2,9 @@ import { lazy } from "react";
 import { createGlobalStyle } from "styled-components";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PageLayout from "./layout/pageLayout";
 
-const Header = lazy(() => import("./components/Header"));
-const Footer = lazy(() => import("./components/Footer"));
 const Home = lazy(() => import("./pages/Home"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Login = lazy(() => import("./pages/Login"));
@@ -62,16 +62,37 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route
+            path="/login"
+            element={
+              <PageLayout>
+                <Login />
+              </PageLayout>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <PageLayout>
+                <Home />
+              </PageLayout>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <PageLayout>
+                <NotFound />
+              </PageLayout>
+            }
+          />
         </Routes>
       </AnimatePresence>
-      <Footer />
     </>
   );
 };

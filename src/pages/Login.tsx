@@ -10,6 +10,7 @@ import {
 import { auth } from "../../firebase";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useIdToken } from "react-firebase-hooks/auth";
 
 const SigninStyled = styled.div`
   padding: 3rem;
@@ -74,11 +75,11 @@ const Signin = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
+  const [user] = useIdToken(auth);
   // google handler function
   async function handleGoogleLogin() {
     try {
-      const result = await signInWithRedirect(auth, googleProvider);
-      console.log(result);
+      await signInWithRedirect(auth, googleProvider);
     } catch (error) {
       console.log(error);
     }
@@ -86,8 +87,7 @@ const Signin = () => {
   // github handler function
   async function handleGithubLogin() {
     try {
-      const result = await signInWithRedirect(auth, githubProvider);
-      console.log(result);
+      await signInWithRedirect(auth, githubProvider);
     } catch (error) {
       console.log(error);
     }
@@ -109,14 +109,8 @@ const Signin = () => {
     },
   ];
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigate("/dashboard");
-      }
-    });
-    return unsubscribe;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (user?.email === "itsmesubid@gmail.com") navigate("/dashboard");
+  }, [navigate, user]);
   return (
     <Layout>
       <SigninStyled>
