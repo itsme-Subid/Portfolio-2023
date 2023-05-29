@@ -39,7 +39,7 @@
     "@types/react-simple-maps": "^3.0.0",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^9.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "eslint": "^8.38.0",
