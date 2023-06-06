@@ -7,10 +7,11 @@ import { Message } from "../../message";
 import { db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { UseFormReset, useForm } from "react-hook-form";
 import axios from "axios";
 import { object, string, InferType } from "yup";
 import platform from "platform";
+import { toast } from "react-hot-toast";
 
 const Section = styled.section`
   position: sticky;
@@ -193,11 +194,24 @@ const Section = styled.section`
   }
 `;
 
-const uploadMessage = async (message: Message) => {
-  await addDoc(collection(db, "messages"), {
-    message,
-  });
-  console.log(message);
+const uploadMessage = async (
+  message: Message,
+  reset: UseFormReset<{
+    name: string;
+    email: string;
+    message: string;
+  }>
+) => {
+  try {
+    await addDoc(collection(db, "messages"), {
+      message,
+    });
+    toast.success("Message sent successfully.");
+    reset();
+  } catch (error: unknown) {
+    console.log(error);
+    toast.error("Something went wrong.");
+  }
 };
 
 const getIp = async () => {
@@ -247,8 +261,7 @@ const Contact = () => {
       ],
       createdAt: serverTimestamp(),
     };
-    uploadMessage(data);
-    reset();
+    uploadMessage(data, reset);
   };
   return (
     <Section className="container" id="contact">

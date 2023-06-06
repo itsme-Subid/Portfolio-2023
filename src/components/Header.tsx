@@ -12,7 +12,7 @@ const blink = keyframes`
 `;
 
 const HeaderStyle = styled.header`
-  position: fixed;
+  position: sticky;
   inset: 0 0 auto 0;
   display: flex;
   justify-content: center;

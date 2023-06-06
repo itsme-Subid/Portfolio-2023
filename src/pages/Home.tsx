@@ -16,6 +16,9 @@ const Container = styled.div`
   }
   @media screen and (max-width: 50rem) {
     height: auto;
+    & section:not(:first-child) {
+      margin-top: 5rem;
+    }
   }
 `;
 

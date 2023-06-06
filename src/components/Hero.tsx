@@ -135,15 +135,6 @@ const Section = styled.section`
       flex: 1;
       height: 100vh;
     }
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: rgb(var(--dark-color), 0.5);
-      backdrop-filter: blur(0.05rem);
-      z-index: 1;
-      pointer-events: none;
-    }
     &::after {
       content: "";
       position: absolute;

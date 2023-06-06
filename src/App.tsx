@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PageLayout from "./layout/pageLayout";
+import { Toaster } from "react-hot-toast";
 
 const Home = lazy(() => import("./pages/Home"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -23,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
   }
   ::-webkit-scrollbar {
     width: 0;
+  }
+  html {
+    color-scheme: dark;
   }
   html, body {
     overflow-x: hidden;
@@ -62,6 +66,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <Toaster />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route element={<ProtectedRoute />}>

@@ -7,7 +7,7 @@ import Carousel from "./Carousel";
 
 const Section = styled.section`
   position: sticky;
-  top: 0;
+  top: -5.5rem;
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -30,6 +30,7 @@ const Section = styled.section`
     z-index: -1;
     @media screen and (max-width: 50rem) {
       z-index: 0;
+      font-size: 4rem;
     }
   }
   & .slide {

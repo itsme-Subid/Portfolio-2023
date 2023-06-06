@@ -15,11 +15,12 @@ import github from "/svg/github.svg";
 import mysql from "/svg/mysql.svg";
 import javascript from "/svg/javascript.svg";
 import framerMotion from "/svg/framer-motion.svg";
+import prisma from "/svg/prisma.svg";
 import three from "/svg/three.svg";
 
 const Section = styled.section`
   position: sticky;
-  top: 0;
+  top: -5.5rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -42,6 +43,10 @@ const Section = styled.section`
     color: rgb(var(--secondary-color), 0.5);
     opacity: 0.1;
     z-index: -1;
+    @media screen and (max-width: 50rem) {
+      font-size: 4rem;
+      bottom: -6rem;
+    }
   }
   & ul {
     display: flex;
@@ -77,7 +82,7 @@ const Section = styled.section`
         background: linear-gradient(
           180deg,
           rgb(var(--primary-color), 0.075) 1%,
-          rgb(var(--primary-color), 0.075) 5%,
+          rgb(var(--primary-color), 0.05) 20%,
           transparent 50%,
           transparent 100%
         );
@@ -103,6 +108,7 @@ const Skill = () => {
     { name: "Three.js", src: three, className: "invert" },
     { name: "Tailwind CSS", src: tailwindcss },
     { name: "Material UI", src: materialui },
+    { name: "Prisma", src: prisma, className: "invert" },
     { name: "Node.js", src: nodejs },
     { name: "Express.js", src: express, className: "invert" },
     { name: "Firebase", src: firebase },
@@ -115,7 +121,7 @@ const Skill = () => {
     <Section className="container" id="skill">
       <ul>
         {skills.map((skill, index) => (
-          <li key={index}>
+          <li key={index} title={skill.name}>
             <img
               src={skill.src}
               alt={skill.name}

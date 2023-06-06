@@ -184,6 +184,7 @@ const DashboardStyled = styled.div`
         transform: scale(0);
         transform-origin: top left;
         opacity: 0;
+        z-index: 1;
         background-color: rgb(var(--dark-color));
         border-radius: 1rem;
         border: 1px solid rgb(var(--light-color), 0.1);
