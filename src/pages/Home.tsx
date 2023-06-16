@@ -15,7 +15,8 @@ const Container = styled.div`
     background-color: rgb(var(--dark-color));
   }
   @media screen and (max-width: 50rem) {
-    height: auto;
+    height: fit-content;
+    overflow: hidden;
     & section:not(:first-child) {
       margin-top: 5rem;
     }
