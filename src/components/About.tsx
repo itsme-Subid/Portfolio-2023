@@ -155,7 +155,7 @@ const About = () => {
           id: 1,
           designation: {
             title: "Head of Engineering",
-            duration: "04/2023 - Present",
+            duration: "03/2023 - 04/2023",
           },
           description: [
             "Oversaw the overall technical direction and strategy of the organization, ensuring alignment with business goals and objectives.",
